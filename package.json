@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "playwright": "^1.46.1"
-  }
+  },
+  "name": "playwrighttest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.5.2"
+  },
+  "scripts": {
+    "test": "npx playwright test", 
+    "testUI": "npx playwright test --ui", 
+    "chrome": "npx playwright test --project=chromium" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
