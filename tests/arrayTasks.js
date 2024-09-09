@@ -183,3 +183,21 @@ function generateNumbers(start, len) {
 
 console.log(generateNumbers(0, 5))
 console.log(generateNumbers(-5, 4))
+
+var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+function vegetableLength(arr) {
+    return arr.map(el => el.length);
+}
+console.log(vegetableLength(vegetables));
+
+numbers = [2, 3, 5, 7, 11, 13, 17];
+
+function currentSums(numbers) {
+    let result = [];
+     numbers.reduce((res, el, i) => {
+        return result[i] = res + el;
+    }, 0);
+    return result;
+}
+console.log(currentSums(numbers));
