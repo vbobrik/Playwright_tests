@@ -89,7 +89,7 @@ console.log(sum(arr1, arr2));
 
 function countIdentic(arr) {
     if (!arr) return 0;
-    let res = new Map([]);
+    let res = new Map();
 
     arr.forEach(element => res.has(element) ? res.set(element, res.get(element) + 1) : res.set(element, 1));
     let amount = 0;
@@ -101,3 +101,58 @@ function countIdentic(arr) {
 }
 console.log(countIdentic([3, 3, 7, 7, 3, 3, 4, 5, 5, 8, 8, 8])) // 4
 console.log(countIdentic([15,14,13,19,13,14,14,14,7,9,9])) // 3
+
+var arr1 = ['Капуста', 'Капитал'];
+var arr2 = ['Репа', 'Редиска'];
+
+function startingSubstring(arr) {
+    if (!arr || arguments.length < 1) return 'Strings are required';
+    // let commonStr = arr[0];
+
+    //  for (const el of arr) {
+    //     el.split('').forEach((letter, i) => {
+
+    //         if (letter !== commonStr[i]) {
+    //             letter.slice(0, i + 1);
+    //             console.log(commonStr);
+    //              }
+    //         })
+    // }
+    // return commonStr;
+    let result = "";
+
+    const str1 = arr[0];
+    const str2 = arr[1];
+    for (let i = 0; i <= arr.length; i++) {
+        while (str1[i] === str2[i]) {
+            result += str1[i];
+            break;
+        }
+    }
+    return result;
+}
+
+var res1 = startingSubstring(arr1);
+var res2 = startingSubstring(arr2);
+console.log(res1, res2);
+
+function removeItem(arr, num) {
+    if(arr.length === 0 || !arr) return null;
+
+    arr.forEach((el, i) => {
+        if (el === num) {
+            arr.splice(i, 1);
+        }
+    })
+    return arr;
+}
+
+console.log(removeItem([3, 5, 7, 8, 5], 5));
+    
+function arrayFilled(len, value) {
+
+    // Ваш код
+    
+    }
+console.log(arrayFilled(5, 1));
+console.log(arrayFilled(4, 12));
