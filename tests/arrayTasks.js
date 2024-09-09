@@ -150,9 +150,36 @@ function removeItem(arr, num) {
 console.log(removeItem([3, 5, 7, 8, 5], 5));
     
 function arrayFilled(len, value) {
-
-    // Ваш код
-    
+    if(!len || !value) return null;
+    if (len === 0) return 0;
+    let arr = [];
+    for(let i = 0; i < len; i++) {
+        arr.push(value);
+    }
+    return arr;
     }
 console.log(arrayFilled(5, 1));
 console.log(arrayFilled(4, 12));
+
+function moveElement(arr,from,to) {
+
+   let storedEl = arr[from];
+   arr.splice(from, 1);
+    arr.splice(to, 0, storedEl);
+    return arr;
+    
+}
+    
+    var arr = [ 'a', 'b', 'c', 'd', 'e'];
+    console.log(moveElement(arr, 3, 1));
+
+function generateNumbers(start, len) {
+    let arr = [];
+    while (arr.length < len) {
+        arr.push(start++);
+     }
+        return arr;
+}
+
+console.log(generateNumbers(0, 5))
+console.log(generateNumbers(-5, 4))
