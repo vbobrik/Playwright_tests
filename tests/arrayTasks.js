@@ -229,3 +229,26 @@ function getArr(a, b, c) {
 }
 
 console.log(getArr(a, b, c)); // [9 8 7 6 5 4 3 2 1] 
+
+// ----- Factorial ----
+function factorial (n) {
+    return n === 1 ? n :
+    n === 0 ? 0 : n * factorial (n - 1);
+}
+
+console.log(factorial(5));
+
+// ----- NOD 2 digits ----
+function digits (a, b) {
+    if ( ! b) {
+        return a;
+    }
+
+    return digits(b, a % b);
+    // let res1 = a.filter((el, i) => el % i && el !== i && i !== 0);
+    // let res2 = b.filter((el, i) => el % i && el !== i && i !== 0);
+    
+    // return (res1 > res2) ? res1.lastIndexof(res2[length - 1]) : res2.lastIndexof(res1[length - 1])
+}
+console.log(digits(5, 15));
+console.log(digits(8, 16));
