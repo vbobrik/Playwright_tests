@@ -201,3 +201,31 @@ function currentSums(numbers) {
     return result;
 }
 console.log(currentSums(numbers));
+
+var str12 = "Каждый охотник желает знать, где сидит фазан."; 
+
+let array1 = str12.split(' ').map(el => /[А-я]/g.test(el) ? el[0] : []);
+
+console.log(array1); 
+
+let str3 = "JavaScript"; 
+
+let arr3 = str3.split('').map((el, i, arr) => `${arr[i-1] + el + arr[i+1]}`.replace('undefined', ''));
+console.log(arr3); 
+
+var numerics = [5, 7, 2, 9, 3, 1, 8];
+
+numerics.sort((a, b) => b - a);
+console.log(numerics);
+
+var a = [1,2,3];
+var b = [4,5,6];
+c = [7,8,9];
+function getArr(a, b, c) {
+    let arr = a.concat(b, c);
+    arr.sort((a, b) => b - a);
+    return arr.join(' ').split('');
+
+}
+
+console.log(getArr(a, b, c)); // [9 8 7 6 5 4 3 2 1] 
