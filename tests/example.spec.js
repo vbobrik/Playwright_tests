@@ -17,3 +17,16 @@ test('get started link', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
+
+test('@Java check Java page', async ({ page }) => {
+  let textJava = 'Playwright is distributed as a set of Maven modules';
+
+  await page.goto('https://playwright.dev/');
+  await page.getByRole('link', { name: 'Get started '}).click();
+  await page.getByRole('button', {name: 'Node.js'}).hover();
+  await page.getByAltText('Java', { exact: true }).click();
+
+  await expect(page).toHaveURL('https://playwright.dev/java/docs/intro');
+  await expect(page.getByText('Installling Playwright', { exact: true })).not.toBeVisible();
+  await expect(page.getByText(textJava)).toBeVisible();
+})

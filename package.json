@@ -15,6 +15,7 @@
   },
   "scripts": {
     "test": "npx playwright test", 
+    "testJava": "npx playwright test --grep @Java --project=chromium", 
     "testUI": "npx playwright test --ui", 
     "chrome": "npx playwright test --project=chromium" 
   },
