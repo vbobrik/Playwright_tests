@@ -63,3 +63,38 @@ function firstFactorial(n) {
 
 console.log(firstFactorial(4)); //24
 console.log(firstFactorial(8)); //40320
+
+// -- T3 --
+
+function runLength(str) {
+    let result = [`1${str.substring(0, 1)}`];
+    for (let i = 1; i < str.length; i++) {
+        if (str[i] !== str[i - 1]) {
+            result.push(1 + str.substring(i, i + 1))
+        } else {
+            let smth = result[result.length - 1].split('');
+                result[result.length - 1] = (+smth[0] + 1) + smth[1];
+        }
+    }
+    return result.join('');
+}
+
+console.log(runLength('aabbcde')); //2a2b1c1d1e
+console.log(runLength('wwwbbbw')); //3w3b1w
+console.log(runLength('qtoopppt')); //1q1t2o3p1t
+
+function runLength2(str) {
+    let count = 1;
+    let result = '';
+    for (let i = 1; i < str.length; i++) {
+        if (str[i] === str[i + 1]) {
+            count++;
+        } else {
+                result += count + str[i];
+                count = 1;
+        }
+    }
+    return result;
+}
+
+console.log(runLength2('aabbcde')); //2a2b1c1d1e
