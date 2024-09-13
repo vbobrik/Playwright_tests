@@ -151,6 +151,7 @@ console.log(calculator('6/3-1')) //1
 // -- T5 -- Medium
 // solution 1:
 function arrayAddition(arr) {
+    let sum = 0;
     arr.sort((a, b) => a - b);
     let largerN = arr.pop();
     if(!arr) return 'false';
@@ -212,3 +213,28 @@ function ArrayAddition(arr) {
     // keep this function call here 
     console.log(ArrayAddition([4, 6, 23, 10, 1, 3]));
     console.log(ArrayAddition([4, -6, 10, -1, 3]));
+
+// -- T5 -- Medium
+
+    function SimpleMode(arr) {
+        let values = new Map();
+        arr.forEach((el) => {
+            if (values.has(el)) {
+                values[el] = values.get(el) + 1;
+            } else {
+                values.set(el, 1);
+            }
+        })
+        console.log(Array.from(values))
+        let max = [1, 1];
+        for (const [key, value] of Object.entries(values)) {
+            if (value > max[0] && values > 1) {
+                max = [value, key];
+            }
+        }
+
+        return (max[1] === 1) ? -1 : max[1];
+    }
+
+    console.log(SimpleMode([10, 4, 5, 2, 4])); //4
+    console.log(SimpleMode([5, 10, 10, 6, 5])); //5
