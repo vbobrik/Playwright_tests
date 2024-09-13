@@ -18,7 +18,7 @@ function findMissingInt (arr) {
 console.log(findMissingInt(arrInt))
 console.log(findMissingInt(arrInt2))
 
-// -- T2 --
+// -- T2 -- HARD
 
 // function mostFreeTime(strArr) {
 //     let ranges = strArr.split(',');
@@ -50,7 +50,7 @@ console.log(findMissingInt(arrInt2))
 //     return ["12:15PM-02:00PM","09:00AM-10:00AM","10:30AM-12:00PM"];
 // }
 
-// -- T3 --
+// -- T3 -- Easy
 
 function firstFactorial(n) {
     if (n === 1 || n === 0) return 1;
@@ -64,7 +64,7 @@ function firstFactorial(n) {
 console.log(firstFactorial(4)); //24
 console.log(firstFactorial(8)); //40320
 
-// -- T3 --
+// -- T3 -- Medium
 
 function runLength(str) {
     let result = [`1${str.substring(0, 1)}`];
@@ -98,3 +98,52 @@ function runLength2(str) {
 }
 
 console.log(runLength2('aabbcde')); //2a2b1c1d1e
+
+// -- T4 -- HARD
+
+function calculator(str) {
+    function getResult (exp) {
+        let res = '';
+        switch(exp[1]) {
+            case '/':
+                res = exp[0] / exp[2];
+                break;
+            case '*':
+                res = exp[0] * exp[2];
+                break;
+            case '-':
+                res = exp[0] - exp[2];
+                break;
+            case '+':
+                res = +exp[0] + +exp[2];
+                break;
+        }
+        return res;
+    }
+
+    function calcResult(searchExp, matchExp, splitExp) {
+        while(str.search(searchExp) >= 0) {
+            let strExpression = str.match(matchExp)[0];
+            let arrExpression = strExpression.split(splitExp);
+            str = str.replace(strExpression, getResult(arrExpression));
+        }
+    }
+
+    // Calculate Result for all exprations in brackets
+    while (str.indexOf('(') >= 0) {
+        let bracketsExpression = str.substring(str.indexOf('('), str.indexOf(')') + 1);
+        let getExpression = bracketsExpression.replace(/\(|\)/g, '').split(/(\*|\/|[+-])/g);
+        str = str.replace(bracketsExpression, getResult(getExpression));
+    }
+
+    // Calculate Result for all '*' and '/'
+    calcResult(/\/|\*/, /\d+(\/|\*)\d+/, /(\*|\/)/g);
+    // Calculate Result for all '+' and '-'
+    calcResult(/[+-]/, /\d+[+-]\d+/, /([+-])/g);
+    
+    return str;
+}
+
+console.log(calculator('6*(4/2)+3*1')) //15
+console.log(calculator('6*(4/2)+3*1-(3+5)')) //7
+console.log(calculator('6/3-1')) //1
