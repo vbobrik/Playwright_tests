@@ -140,10 +140,75 @@ function calculator(str) {
     calcResult(/\/|\*/, /\d+(\/|\*)\d+/, /(\*|\/)/g);
     // Calculate Result for all '+' and '-'
     calcResult(/[+-]/, /\d+[+-]\d+/, /([+-])/g);
-    
+
     return str;
 }
 
 console.log(calculator('6*(4/2)+3*1')) //15
 console.log(calculator('6*(4/2)+3*1-(3+5)')) //7
 console.log(calculator('6/3-1')) //1
+
+// -- T5 -- Medium
+// solution 1:
+function arrayAddition(arr) {
+    arr.sort((a, b) => a - b);
+    let largerN = arr.pop();
+    if(!arr) return 'false';
+    return calcSum(arr) ? 'true' : 'false';
+
+    function checkSum(arr) {
+        sum = arr.reduce((res, el) => res + el, 0);
+    return (sum === largerN);
+
+    }
+
+    function calcSum(arr) {
+        if (!checkSum(arr)) {
+            let cuttedArr = arr;
+
+            for (let i = 0; i < arr.length; i++) {
+                cuttedArr.splice(i, 1);
+                if(checkSum(cuttedArr)) return true;
+            }
+            return false;
+        }
+        return true;
+            
+        }
+}
+
+console.log(arrayAddition([4, 6, 23, 10, 1, 3])); //true
+console.log(arrayAddition([4, -6, 10, -1, 3])); //false
+
+// solution 2 (NOT mine):
+function ArrayAddition(arr) { 
+
+    // sort the array in ascending order and remove the largest number 
+      var target = arr.sort(function(a, b){return a-b}).pop();
+    
+      // check if any combination of numbers in the array (excluding the largest number) 
+      // can be added up to equal the largest number in the array
+      return isContains(arr, target);
+    
+      function isContains(arr, target){
+    
+      // if the array is empty, check if the target is zero
+      if(arr.length === 0){
+        return target === 0;
+      }
+    
+      // get the first element in the array and the remaining elements
+      var head = arr[0];
+      var tail = arr.slice(1);
+    
+      // check if the target can be reached by subtracting the first element from the target
+      // and checking if the remaining elements contain a combination that adds up to the result
+      // or check if the remaining elements contain a combination that adds up to the target
+      return isContains(tail, target - head) || isContains(tail, target);
+    }
+    
+    }
+       
+    // keep this function call here 
+    console.log(ArrayAddition([4, 6, 23, 10, 1, 3]));
+    console.log(ArrayAddition([4, -6, 10, -1, 3]));
