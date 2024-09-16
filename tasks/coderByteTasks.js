@@ -265,6 +265,42 @@ function StringScramble2(str1, str2) {
     return !findDiffer(str1, str2) || !findDiffer(str2, str1);
 }
 
-console.log(StringScramble2('rkqodlw','world'));
-console.log(StringScramble2('rk1odlw','wo23d'));
-console.log(StringScramble2('i3p2kk','v3b21k'));
+console.log(StringScramble2('rkqodlw','world')); //true
+console.log(StringScramble2('rk1odlw','wo23d')); //true
+console.log(StringScramble2('i3p2kk','v3b21k')); //false
+
+// -- T8 -- Medium
+// https://appdev4tech.com/2023/03/stock-picker-interview-coderbyte-code-challenge-javascript-solution-source-code-answers/
+
+function StockPicker(arr) {
+    let maxProfit = -1;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+
+            if (arr[i] < arr[j]) {
+                let profit = arr[j] - arr[i];
+                maxProfit = (maxProfit <  profit) ? profit : maxProfit;
+            };
+        }
+    }
+    return maxProfit;
+}
+
+console.log(StockPicker([44, 30, 24, 32, 35, 30, 40, 38, 15])); //16
+console.log(StockPicker([10, 9, 8, 2])); //-1
+
+// Solution from author (not mine):
+function StockPicker2(arr) { 
+    var profit=-1; // Initialize the maximum profit to -1
+    var buyPrice=arr[0]; // Initialize the buying price to the first element of the array
+    for(var i=1; i<arr.length; i++){ // Loop through the array starting from the second element
+        if(arr[i]<buyPrice){ // If the current element is smaller than the buying price
+            buyPrice=arr[i]; // Update the buying price
+        }
+        else if( (arr[i]-buyPrice) > profit){ // If selling the stock at the current price will give a greater profit than the previous maximum profit
+            profit=arr[i]-buyPrice; // Update the maximum profit
+        }
+    }
+    
+  return profit; // Return the maximum profit 
+}
