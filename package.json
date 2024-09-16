@@ -17,7 +17,8 @@
     "test": "npx playwright test", 
     "testJava": "npx playwright test --grep @Java --project=chromium", 
     "testUI": "npx playwright test --ui", 
-    "chrome": "npx playwright test --project=chromium" 
+    "chrome": "npx playwright test --project=chromium",
+    "testYandex": "npx playwright test --grep @Yandex --project=chromium"
   },
   "keywords": [],
   "author": "",
