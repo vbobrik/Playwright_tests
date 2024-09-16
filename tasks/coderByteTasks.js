@@ -214,7 +214,7 @@ function ArrayAddition(arr) {
     console.log(ArrayAddition([4, 6, 23, 10, 1, 3]));
     console.log(ArrayAddition([4, -6, 10, -1, 3]));
 
-// -- T5 -- Medium
+// -- T6 -- Medium
 
     function SimpleMode(arr) {
         let values = new Map();
@@ -225,7 +225,7 @@ function ArrayAddition(arr) {
                 values.set(el, 1);
             }
         })
-        console.log(Array.from(values))
+        console.log(values)
         let max = [1, 1];
         for (const [key, value] of Object.entries(values)) {
             if (value > max[0] && values > 1) {
@@ -238,3 +238,33 @@ function ArrayAddition(arr) {
 
     console.log(SimpleMode([10, 4, 5, 2, 4])); //4
     console.log(SimpleMode([5, 10, 10, 6, 5])); //5
+
+// -- T7 -- Medium
+    // https://appdev4tech.com/2023/02/code-interview-coderbyte-string-scramble-code-challenge-javascript-solution-source-code/
+
+    // Solution 1:
+
+function StringScramble(a, b) {
+let str1 = a.replace(/\d+/g, '').split('');
+let str2 = b.replace(/\d+/g, '').split('');
+
+return !str1.find(el => !str2.includes(el)) || !str2.find(el => !str1.includes(el));
+}
+
+console.log(StringScramble('rkqodlw','world'));
+console.log(StringScramble('rk1odlw','wo23d'));
+console.log(StringScramble('i3p2kk','v3b21k'));
+
+    // Solution 2:
+
+function StringScramble2(str1, str2) {
+    function findDiffer (s1, s2) {
+        return s1.replace(/\d+/g, '').split('').find(el => s2.indexOf(el) === -1);
+    }
+
+    return !findDiffer(str1, str2) || !findDiffer(str2, str1);
+}
+
+console.log(StringScramble2('rkqodlw','world'));
+console.log(StringScramble2('rk1odlw','wo23d'));
+console.log(StringScramble2('i3p2kk','v3b21k'));
