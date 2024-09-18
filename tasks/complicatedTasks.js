@@ -29,46 +29,44 @@ const numbersToWords = {
     80: "eighty",
     90: "ninety",
     100: "hundred",
-    1000: "thousant",
+    1000: "thousand",
     1000000: 'million'
   };
   
 function convert (num) {
-    // let numString;
     if (typeof num === 'string') {
         num = num.split('').filter(el => (el.match(/\d/))).join('');
     }
-    if (typeof num !== 'number') return 'Please, enter number';
+    if (typeof +num !== 'number') return 'Please, enter number';
 
     num += '';
 
     function getDecimal (n) {
-        console.log( num);
         if (n === '00') return '';
-        if (n[0] === '0') return numbersToWords[1];
-        return (n >= 10 && n <= 20) ? numbersToWords[n] : numbersToWords[n[0] + '0'] + ' ' + numbersToWords[n[1]]; 
+        if (n[0] === '0') return numbersToWords[n[1]];
+        return (n > 0 && n <= 20) ? numbersToWords[n] : numbersToWords[n[0] + '0'] + '-' + numbersToWords[n[1]]; 
     }
 
     function getHundred (n) {
-        console.log( num);
         if (n === '000') return '';
-        if (n[0] === '0' && n[1] === '0') return numbersToWords[2];
-        if (n[0] !== '0' && n[1] === '0') return numbersToWords[0] + ' ' + numbersToWords[100] + ' ' + numbersToWords[2];
-        return numbersToWords[n[0]] + ' ' + numbersToWords[100] + ' ' + getDecimal[n[1] + n[2]]; 
+        if (n[0] === '0' && n[1] === '0') return numbersToWords[n[2]];
+        if (n[0] !== '0' && n[1] === '0' && n[2] === '0') return numbersToWords[n[0]] + ' ' + numbersToWords[100];
+        if (n[0] !== '0' && n[1] === '0' && n[2] !== '0') return numbersToWords[n[0]] + ' ' + numbersToWords[100] + ' ' + numbersToWords[n[2]];
+        return numbersToWords[n[0]] + ' ' + numbersToWords[100] + ' ' + getDecimal(n[1] + n[2]); 
     }
 
     function getThousant (n) {
-        console.log( num);
+        // console.log( num);
         let thousand;
         switch (n.length) {
             case 6:
-                thousand = getHundred(n[0] + n[1] + n[2]) + ' ' + numbersToWords[1000] + ' ' + getHundred(n[0] + n[1] + n[2]);
+                thousand = getHundred(n[0] + n[1] + n[2]) + ' ' + numbersToWords[1000] + ' ' + getHundred(n[3] + n[4] + n[5]);
                 break;
             case 5:
-                thousand = getDecimal(n[0] + n[1]) + ' ' + numbersToWords[1000] + ' ' + getHundred(n[0] + n[1] + n[2]);
+                thousand = getDecimal(n[0] + n[1]) + ' ' + numbersToWords[1000] + ' ' + getHundred(n[2] + n[3] + n[4]);
                 break;
             case 4:
-                thousand = numbersToWords[n[0]] + ' ' + numbersToWords[1000] + ' ' + getHundred(n[0] + n[1] + n[2]);
+                thousand = numbersToWords[n[0]] + ' ' + numbersToWords[1000] + ' ' + getHundred(n[1] + n[2] + n[3]);
                 break;
             case 3:
                 thousand = getHundred(n);
@@ -83,23 +81,21 @@ function convert (num) {
     }
 
     function getMillion (n) {
-        console.log('getMillion: ', n, n.length);
         let million;
         switch (n.length) {
             case 9:
                 million = getHundred(n[0] + n[1] + n[2]) + ' ' + numbersToWords[1000000] + ' ' + getThousant(n.slice(3));
                 break;
             case 8:
-                million = getDecimal(n[0] + n[1]) + ' ' + numbersToWords[1000000] + ' ' + getHundred(n[0] + n[1] + n[2]);
+                million = getDecimal(n[0] + n[1]) + ' ' + numbersToWords[1000000] + ' ' + getThousant(n.slice(3));
                 break;
             case 7:
-                million = numbersToWords[n[0]] + ' ' + numbersToWords[1000000] + ' ' + getHundred(n[0] + n[1] + n[2]);
+                million = numbersToWords[n[0]] + ' ' + numbersToWords[1000000] + ' ' + getThousant(n.slice(3));
                 break;
             default:
                 million = getThousant(n);
                 break;
         }
-        console.log('million: ', million);
         return million;
     }
 
