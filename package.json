@@ -10,13 +10,16 @@
     "test": "tests"
   },
   "devDependencies": {
+    "@eslint/js": "^9.10.0",
     "@playwright/test": "^1.46.1",
-    "@types/node": "^22.5.2"
+    "@types/node": "^22.5.2",
+    "eslint": "^9.10.0",
+    "globals": "^15.9.0"
   },
   "scripts": {
-    "test": "npx playwright test", 
-    "testJava": "npx playwright test --grep @Java --project=chromium", 
-    "testUI": "npx playwright test --ui", 
+    "test": "npx playwright test",
+    "testJava": "npx playwright test --grep @Java --project=chromium",
+    "testUI": "npx playwright test --ui",
     "chrome": "npx playwright test --project=chromium",
     "testYandex": "npx playwright test --grep @Yandex --project=chromium"
   },
